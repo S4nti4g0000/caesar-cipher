@@ -13,7 +13,7 @@ end
 
 
 def cipher_string(str, factor)
-    p shifted = shift_alphabet(factor)
+    shifted = shift_alphabet(factor)
     temp = str.downcase.split('')
 
     indexes = []
@@ -31,7 +31,16 @@ def cipher_string(str, factor)
         end
     end
 
-    new_string
+    temp.each.with_index do |element, index|
+        new_string.insert(index, element) if element == " " || element == "!" || element == "," || element == "."
+        
+    end
+
+    new_string = new_string.map.with_index do |ch, i|
+        str[i] =~ /[A-Z]/ ? ch.upcase : ch
+    end
+
+    new_string.join('')
 
 end
 
